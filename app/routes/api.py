@@ -72,10 +72,9 @@ def comment():
       db.commit()
   except:
       print(sys.exc_info()[0])
-
       db.rollback()
       return jsonify(message = 'Comment failed'), 500
-  
+
   return jsonify(id = newComment.id)
 
 @bp.route('/posts/upvote', methods=['PUT'])
