@@ -74,7 +74,6 @@ def comment():
       print(sys.exc_info()[0])
       db.rollback()
       return jsonify(message = 'Comment failed'), 500
-
   return jsonify(id = newComment.id)
 
 @bp.route('/posts/upvote', methods=['PUT'])
@@ -95,10 +94,8 @@ def upvote():
 
   except:
     print(sys.exc_info()[0])
-
     db.rollback()
     return jsonify(message = 'Upvote failed'), 500
-  
   return '', 204
 
 @bp.route('/posts', methods=['POST'])
@@ -119,10 +116,8 @@ def create():
     db.commit()
   except:
      print(sys.exc_info()[0])
-
      db.rollback()
      return jsonify(message = 'Post failed'), 500
-  
   return jsonify(id = newPost.id)
 
 @bp.route('/posts/<id>', methods=['PUT'])
@@ -138,10 +133,8 @@ def update(id):
      db.commit()
   except:
      print(sys.exc_info()[0])
-
      db.rollback()
      return jsonify(message = 'Post not found'), 404
-  
   return '', 204
 
 @bp.route('/posts/<id>', methods=['DELETE'])
@@ -155,9 +148,7 @@ def delete(id):
     db.commit()
   except:
     print(sys.exc_info()[0])
-
     db.rollback()
     return jsonify(message = 'Post not found'), 404
-
   return '', 204
     
